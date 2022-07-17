@@ -1,0 +1,196 @@
+poly.cpp
+//Author Name:Al-Fareed
+//Reg No:210970049
+//Date Of Creation:16-Mar-22
+//Program Name:Program to add two polynomials
+//---------------------------------------------------------------
+#include<iostream>
+using namespace std;
+struct poly
+{
+        int coeff,exp;
+};
+void input(poly p[])
+{
+        int n,i;
+        cout<<"Enter the number of terms:";
+        cin>>n;
+        p[0].coeff=n;
+        cout<<"\nEnter the values for co-effiecent and exponent:";
+        for(i=1;i<=n;i++)
+        {
+                cin>>p[i].coeff>>p[i].exp;
+        }
+}
+void display(poly p[])
+{
+        int i,term;
+        for(i=1;i<=p[0].coeff;i++)
+        {
+        cout<<p[i].coeff<<"x^"<<p[i].exp<<" ";
+}
+}
+
+void add(poly p1[],poly p2[],poly p3[])
+{
+        int i=1,j=1,n1=p1[0].coeff,n2=p2[0].coeff,n3=0;
+        while(i<=n1 && j<=n2)
+        {
+                if(p1[i].exp>p2[j].exp)
+                {
+                        n3++;
+                        p3[n3].coeff=p1[i].coeff;
+                        p3[n3].exp=p1[i].exp;
+                        i++;
+                }
+                else if(p1[i].exp<p2[j].exp)
+                {
+                        n3++;
+                        p3[n3].coeff=p2[j].coeff;
+                        p3[n3].exp=p2[j].exp;
+                        j++;
+                }
+                else
+                {
+                        int  sum=p1[i].coeff+p2[j].coeff;
+                                if(sum!=0)
+                                {
+                                        n3++;
+                                        p3[n3].coeff=sum;
+                                        p3[n3].exp=p1[i].exp;
+                                }
+                                i++;
+                                j++;
+                }
+        }
+        while(i<=n1)
+        {
+                n3++;
+                p3[n3].coeff=p1[i].coeff;
+                p3[n3].exp=p1[i].exp;
+                i++;
+        }
+        while(j<=n2)
+        {
+                n3++;
+                p3[n3].coeff=p2[j].coeff;
+                p3[n3].exp=p2[j].exp;
+                j++;
+        }
+        p3[0].coeff=n3;
+}
+
+int main()
+{
+        poly p1[10],p2[10],p3[10];
+        cout<<"\nEnter the First Polynomial expression:\n";
+        input(p1);
+        cout<<"\nEnter the Second Polynomial expression:\n";
+        input(p2);
+        cout<<"\n The First Polynomial is:\n";
+        display(p1);
+        cout<<"\n The Second Polynomial is:\n";
+        display(p2);
+        add(p1,p2,p3);
+        cout<<"\n The sum of two polynomials are:\n";
+        display(p3);
+        cout<<"\n";
+        return 0;
+}
+
+sparse.cpp
+//Author Name:Al-Fareed
+//Reg No:210970049
+//Date Of Creation:9-Mar-22
+//Program Name: Sparse Matrix program
+//----------------------------------------------------
+#include<iostream>
+using namespace std;
+struct sparse
+{
+        int r,c,val;
+};
+int main()
+{
+        int i,j,row,col,sm[10][10],count=0,a[10][10];
+        cout<<"Enter the number of rows and columns:";
+        cin>>row>>col;
+                cout<<"Enter the elements:";
+                for(i=0;i<row;i++)
+                {
+                        for(j=0;j<col;j++)
+                        {
+                                cin>>sm[i][j];
+                                if(sm[i][j]!=0)
+                                {
+                                        count++;
+                                }
+                        }
+                }
+        cout<<"The Entered Matrix is:"<<endl;
+        for(i=0;i<row;i++)
+        {
+                for(j=0;j<col;j++)
+                {
+                        a[i][j]=sm[i][j];
+                        cout<<a[i][j]<<" ";
+                 }cout<<endl;
+        }
+        int totel=((row*col)/2);
+        cout<<"Count of non zero elements are:"<<count<<endl;
+        if(count>totel)
+        {
+                cout<<"This is not a Sparse Matrix";
+                exit(0);
+        }
+        sparse m[count+1];
+        int k=1,val;
+        cout<<"Row\tCol\tVal\n";
+        m[0].r=row;
+        m[0].c=col;
+        m[0].val=count;
+        for(i=0;i<row;i++)
+        {
+                for(j=0;j<col;j++)
+                {
+                        if(a[i][j]!=0)
+                        {
+                                m[k].r=i;
+                                m[k].c=j;
+                                m[k].val=a[i][j];
+                                k++;
+                        }
+                }
+        }
+        for(i=0;i<count+1;i++){
+cout<<m[i].r<<"\t"<<m[i].c<<"\t"<<m[i].val<<endl;
+}
+
+int p=1,arr[10][10];
+for(i=0;i<m[0].r;i++)
+{
+        for(j=0;j<m[0].c;j++)
+        {
+                if(m[p].r==i && m[p].c==j)
+                {
+                        arr[i][j]=m[p].val;
+                        p++;
+                }
+                else
+                {
+                        arr[i][j]=0;
+                }
+        }
+}
+                cout<<"The 2D matrix after mapping from triplet is:"<<endl;
+for(i=0;i<row;i++)
+{
+        for(j=0;j<col;j++)
+        {
+                cout<<arr[i][j]<<" ";
+        }
+cout<<endl;
+}
+return 0;
+}
+
