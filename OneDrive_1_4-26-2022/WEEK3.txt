@@ -1,0 +1,141 @@
+Fact.cpp
+//Author Name:Al-Fareed
+//Reg No.:210970049
+//Date Of Creation:16-Mar-22
+//Program Name:Program to calculate Factorial of given number
+//---------------------------------------------------------------
+#include<iostream>
+using namespace std;
+int fact(int n)
+{
+        if(n==0)
+        {
+                return 1;
+        }
+        else
+        {
+                return(n*fact(n-1));
+        }
+}
+int main()
+{
+        int num;
+        cout<<"Enter the number:";
+        cin>>num;
+        cout<<"The Factorial of the given number is:"<<fact(num);
+        cout<<endl;
+        return 0;
+}
+
+Fib.cpp
+//Author Name:Al-Fareed
+//Reg No.:210970049
+//Date Of Creation:16-Mar-22
+//Program Name:Program to generate n Fibonacci series
+//---------------------------------------------------------------
+#include<iostream>
+using namespace std;
+int fib(int n)
+{
+int i;
+i=n;
+        if(n<=i)
+        {
+        if(n==0 || n==1)
+        {
+                return n;
+        }
+        else
+        {
+                return(fib(n-1)+fib(n-2));
+        }
+        }
+}
+int main()
+{
+        int num;
+        cout<<"Enter the required number of Fibonacci series:";
+        cin>>num;
+        cout<<"The Fibonacci series are:";
+        for(int i=0;i<=num;i++)
+        {
+                        if(i%5)
+                        {
+
+                                cout<<fib(i)<<" ";
+                        }
+                        else
+                        {
+                                cout<<fib(i)<<" ";
+                        }
+                }
+        cout<<endl;
+        return 0;
+}
+
+gcd.cpp
+//Author Name:Al-Fareed
+//Reg No.:210970049
+//Date Of Creation:23-Mar-22
+//Program Name:Program to find the GCD of the given two number
+//------------------------------------------------------------
+#include<iostream>
+using namespace std;
+int gcd(int a, int b)
+{
+        if(b==0)
+        {
+                return a;
+        }
+        else if(a==0)
+        {
+                return b;
+        }
+        else
+        {
+                return gcd(b,a%b);
+        }
+}
+int main()
+{
+        int a,b;
+        cout<<"Enter the value for a and b:";
+        cin>>a>>b;
+        cout<<"The gcd of two numbers are:"<<gcd(a,b);
+        cout<<endl;
+        return 0;
+}
+
+
+towersOfHanoi.cpp
+//Author Name:Al-Fareed
+//Reg No.:210970049
+//Date Of Creation:16-Mar-22
+//Program Name:Program to solve Towers of Hanoi
+//------------------------------------------------
+#include<iostream>
+using namespace std;
+void towers(int n,char source,char aux,char dest)
+{
+        if(n==1)
+        {
+                cout<<"move: "<<source <<" -> "<<dest<<"\n";
+                return;
+        }
+        else
+        {
+                towers(n-1,source,dest,aux);
+                cout<<"Move: "<<source<<" -> "<<dest<<endl;
+                towers(n-1,aux,source,dest);
+        }
+
+}
+int main()
+{
+        int n;
+        cout<<"Enter the number of disk to be moved from Source->Destination:";
+        cin>>n;
+        towers(n,'A','B','C');
+        return 0;
+}
+
